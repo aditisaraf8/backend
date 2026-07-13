@@ -1,0 +1,42 @@
+<html>
+<head>
+<title>JwtService.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#191a1c">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+JwtService.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com</span><span class="s2">.</span><span class="s1">aditisaraf</span><span class="s2">.</span><span class="s1">backendproject</span><span class="s2">.</span><span class="s1">security</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">io</span><span class="s2">.</span><span class="s1">jsonwebtoken</span><span class="s2">.</span><span class="s1">Jwts</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">io</span><span class="s2">.</span><span class="s1">jsonwebtoken</span><span class="s2">.</span><span class="s1">SignatureAlgorithm</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">springframework</span><span class="s2">.</span><span class="s1">stereotype</span><span class="s2">.</span><span class="s1">Service</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Date</span><span class="s2">;</span>
+
+<span class="s1">@Service</span>
+<span class="s0">public class </span><span class="s1">JwtService </span><span class="s2">{</span>
+
+    <span class="s0">private static final </span><span class="s1">String SECRET_KEY </span><span class="s2">= </span><span class="s3">&quot;mySecretKeyForJwtAuthentication123456&quot;</span><span class="s2">;</span>
+
+    <span class="s0">public </span><span class="s1">String generateToken</span><span class="s2">(</span><span class="s1">String email</span><span class="s2">) {</span>
+        <span class="s0">return </span><span class="s1">Jwts</span><span class="s2">.</span><span class="s1">builder</span><span class="s2">()</span>
+                <span class="s2">.</span><span class="s1">setSubject</span><span class="s2">(</span><span class="s1">email</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">setIssuedAt</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Date</span><span class="s2">())</span>
+                <span class="s2">.</span><span class="s1">setExpiration</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Date</span><span class="s2">(</span><span class="s1">System</span><span class="s2">.</span><span class="s1">currentTimeMillis</span><span class="s2">() + </span><span class="s4">1000 </span><span class="s2">* </span><span class="s4">60 </span><span class="s2">* </span><span class="s4">60 </span><span class="s2">* </span><span class="s4">24</span><span class="s2">))</span>
+                <span class="s2">.</span><span class="s1">signWith</span><span class="s2">(</span><span class="s1">SignatureAlgorithm</span><span class="s2">.</span><span class="s1">HS256</span><span class="s2">, </span><span class="s1">SECRET_KEY</span><span class="s2">)</span>
+                <span class="s2">.</span><span class="s1">compact</span><span class="s2">();</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>
